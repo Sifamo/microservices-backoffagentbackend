@@ -61,7 +61,6 @@ public class BackOffAgentService {
         client.setClientAccountType(clientAccountType);
         client.setAgentId("agent1");
 
-        String url = "https://cmi-service0.herokuapp.com/clients";
 
 //        HttpHeaders headers = new HttpHeaders();
 //        headers.setContentType(MediaType.APPLICATION_JSON);
@@ -89,20 +88,21 @@ public class BackOffAgentService {
 //        jsonObject.put("clientAccountType","200");
 //        jsonObject.put("agentId","agent");
 
-        HttpEntity<ClientModel> entity = new HttpEntity<ClientModel>(client);
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
-
-        if(response.getStatusCode() == HttpStatus.ACCEPTED){
+//        String url = "https://cmi-service0.herokuapp.com/clients";
+//        HttpEntity<ClientModel> entity = new HttpEntity<ClientModel>(client);
+//        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+//
+//        if(response.getStatusCode() == HttpStatus.ACCEPTED){
             try {
                 clientRepository.save(client);
             } catch(Exception e){
                 return null;
             }
             return client;
-        }
-        else{
-            return null;
-        }
+//        }
+//        else{
+//            return null;
+//        }
     }
 
     public AgentModel subscribeAgent(SubscriptionRequest subscriptionRequest){
@@ -185,6 +185,8 @@ public class BackOffAgentService {
     public String authenticateBackoffice(AuthenticationRequest authenticationRequest) {
         String username = authenticationRequest.getUsername();
         String password = authenticationRequest.getPassword();
+
+        System.out.println(username);
 
         if(username.equals("admin") && password.equals("password"))
             return "success";
