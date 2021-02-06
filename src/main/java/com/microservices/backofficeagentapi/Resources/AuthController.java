@@ -14,8 +14,7 @@ public class AuthController {
     private BackOffAgentService backOffAgentService;
 
     @CrossOrigin(origins="https://microservicebackoffagentfront.herokuapp.com")
-//    @PostMapping("/subClient")
-    @RequestMapping(value = "/subClient", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    @PostMapping("/subClient")
     private ResponseEntity<?> subscribeClient(@RequestBody SubClientRequest subClientRequest){
 
         if(backOffAgentService.subscribeClient(subClientRequest) == null){
