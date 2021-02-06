@@ -13,7 +13,7 @@ public class AuthController {
     @Autowired
     private BackOffAgentService backOffAgentService;
 
-    @CrossOrigin(origins="http://localhost:4200")
+    @CrossOrigin(origins="https://microservicebackoffagentfront.herokuapp.com")
 //    @PostMapping("/subClient")
     @RequestMapping(value = "/subClient", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     private ResponseEntity<?> subscribeClient(@RequestBody SubClientRequest subClientRequest){
@@ -25,7 +25,7 @@ public class AuthController {
         return ResponseEntity.ok(new SubscriptionResponse("success"));
     }
 
-    @CrossOrigin(origins="http://localhost:4200")
+    @CrossOrigin(origins="https://microservicebackoffagentfront.herokuapp.com")
     @PostMapping("/subAgent")
     private ResponseEntity<?> subscribeAgent(@RequestBody SubscriptionRequest subscriptionRequest){
         if(backOffAgentService.subscribeAgent(subscriptionRequest) == null){
@@ -35,7 +35,7 @@ public class AuthController {
         return ResponseEntity.ok(new SubscriptionResponse("success"));
     }
 
-    @CrossOrigin(origins="http://localhost:4200")
+    @CrossOrigin(origins="https://microservicebackoffagentfront.herokuapp.com")
     @PostMapping("/agentAuth")
     private ResponseEntity<?> authenticateAgent(@RequestBody AuthenticationRequest authenticationRequest) {
         if(backOffAgentService.authenticateAgent(authenticationRequest).equals("error")){
@@ -45,7 +45,7 @@ public class AuthController {
         return ResponseEntity.ok(new SubscriptionResponse("success"));
     }
 
-    @CrossOrigin(origins="http://localhost:4200")
+    @CrossOrigin(origins="https://microservicebackoffagentfront.herokuapp.com")
     @PostMapping("/backoffauth")
     private ResponseEntity<?> authenticateBackoffice(@RequestBody AuthenticationRequest authenticationRequest) {
         System.out.println(authenticationRequest);
